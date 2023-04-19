@@ -1,0 +1,19 @@
+.table{
+    /* table-layout: fixed; */
+    width: 100%;
+  border: 3px solid purple;
+  text-align:center;
+  vertical-align: middle
+
+}
+
+.tr{
+   color: palevioletred; 
+   font-style: italic;
+   border: 1px solid purple;
+  
+}
+
+.primarybtnrk{
+    --bs-btn-color: red;
+}

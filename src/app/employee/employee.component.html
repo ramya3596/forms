@@ -1,0 +1,118 @@
+<div >
+    <div >
+   <button type="button" class="btn btn-outline-primary"(click)="displayGet()">GET</button> <br>
+   <button type="button" class="btn btn-outline-primary"(click)="displayPost()">POST</button><br>
+   <button type="button" class="btn btn-outline-primary">UPDATE</button><br>
+   <button type="button" class="btn btn-outline-primary">DELETE</button><br>
+
+</div> 
+
+<form [formGroup]="employeeFormGroup" (ngSubmit)="postEmployee()">
+
+ <div *ngIf="postView">
+   
+
+    <label style="color:red;">*</label>
+        <label> EmployeeId :</label>
+
+        <input required minlength-3 maxlength-10 pattern='^[A-Z][a-zA-Z0-9]*$' type="text" formControlName="employeeId" >
+
+        <div *ngIf="!employeeFormGroup.controls.employeeId.valid">
+         employeeId is manditory and accepts data with 3-8 length..
+        </div>
+
+        <label> Department :</label>
+        
+        <input type="text" formControlName="department" >
+
+        <label> Experience :</label>
+        
+        <input type="text" formControlName="experience" >
+
+        <label> Salary :</label>
+        
+        <input type="text" formControlName="salary" >
+
+        <label>TechnicalKnowledge :</label>
+
+       <div formArrayName="technicalKnowledge">
+
+       <div *ngFor="let knowledge of getTechnicalKnowledge() let i =index">
+        <input type="text" [formControlName]= i >
+
+       </div>
+
+      </div>
+
+       <button type="button" (click)="addTechnicalKnowledge()">addTechnicalKnowledge</button>
+    
+
+       <label>Policies :</label>
+
+    <div formArrayName="policies">
+      <div *ngFor="let p of getPolicies() let i =index">
+         <input type="text" [formControlName]= i >
+
+        </div>
+    </div>
+
+    <button type="button" (click)="addPolicies()">addPolicies</button>
+
+    <label>DOJ :</label>
+
+    <input type="text" formControlName="doj" >
+
+      <button type="submit">postEmployee</button>
+
+   </div>
+
+</form>
+
+
+<div *ngIf="getView">
+<button type="button" class="btn btn-outline-primary primarybtnrk"  (click)="loadEmployee('all')">loadEmployee All Employee</button><br>
+<button (click)="loadEmployee('python')">python</button>
+<button (click)="loadEmployee('java')">java</button>
+<button (click)="loadEmployee('js')">js</button>
+<button (click)="loadEmployee('cloud')">cloud</button>
+<table class="table">
+   <tr class="tr">
+      <th>S.NO</th>
+      <th>EmployeeId</th>
+      <th>Department</th>
+      <th>Experience</th>
+      <th>Salary</th>
+      <th>TechnicalKnowledge</th>
+      <th>Policies</th>
+      <th>DOJ</th>
+   </tr>
+
+<tr  *ngFor="let employe of employee let i = index">
+   
+   <td>{{i+1}}</td>
+   <td>{{employe.employeeId}}</td>
+   <td>{{employe.department}}</td>
+   <td>{{employe.experience}}</td>
+   <td>{{employe.salary}}</td>
+   <td>{{employe.technicalKnowledge}}</td>
+   <td>{{employe.policies}}</td>
+   <td>{{employe.doj}}</td>
+  
+   <button (click)="editEmployee(employe.id,i)">!</button>
+   <div data-bs-theme="dark" >
+   <button type="button" class="btn-close" aria-label="Close" (click)="deleteEmployee(employe.id)"></button>
+</div>
+</tr>
+
+</table>
+
+</div>
+
+<!-- <button (click)="updateEmployee(employee.id)">UpdateEmployee</button>
+
+<button (click)="deleteEmployee()">DeleteEmployee</button>
+ -->
+
+
+
+</div>
