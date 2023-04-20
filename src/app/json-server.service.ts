@@ -13,16 +13,10 @@ export class JsonServerService {
 
   employeeUrl:any ="http://localhost:3000/employee"
 
-  getUsers(){
-    return this.http.get(this.jsonUrl)
-  }
-
-  postUsers(user:any){
-    return this.http.post(this.jsonUrl,user)
-  }
-
-  putUsers(user:any,id:any){
-    return this.http.put(this.jsonUrl+"/"+id,user)
+  employeeProjectUrl:any ="http://localhost:3000/empProject"
+  
+  getEmployeeProject(){
+    return this.http.get(this.employeeProjectUrl)
   }
 
   getEmployees(){

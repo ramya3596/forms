@@ -85,6 +85,8 @@
       <th>TechnicalKnowledge</th>
       <th>Policies</th>
       <th>DOJ</th>
+      <th>Project</th>
+     
    </tr>
 
 <tr  *ngFor="let employe of employee let i = index">
@@ -97,6 +99,7 @@
    <td>{{employe.technicalKnowledge}}</td>
    <td>{{employe.policies}}</td>
    <td>{{employe.doj}}</td>
+   <td>{{employe.project}}</td>
   
    <button (click)="editEmployee(employe.id,i)">!</button>
    <div data-bs-theme="dark" >

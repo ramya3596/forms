@@ -15,6 +15,9 @@ export class EmployeeComponent {
   postView: boolean = false
 
   employee: any
+  employeeRes:any =[]
+
+  employeeProject:any
 
   id: any
   arrDep:any=["python","cloud","js","java"]
@@ -36,6 +39,14 @@ export class EmployeeComponent {
 
     this.employeeServe.getEmployees().subscribe(res => {
       this.employee = res
+
+      this.employeeServe.getEmployeeProject().subscribe(res1 =>{console.log(res1)
+        this.employeeProject=res1
+        console.log(this.employeeProject)
+        
+      })
+
+      
       if (val !== "all") {
 
         this.employee = this.employee.filter((element: any) => {
@@ -45,8 +56,11 @@ export class EmployeeComponent {
         
       }
       console.log(this.employee)
-
+     
+      
     })
+   
+   
   }
 
   addTechnicalKnowledge() {
