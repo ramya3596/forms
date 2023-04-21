@@ -14,6 +14,12 @@ export class JsonServerService {
   employeeUrl:any ="http://localhost:3000/employee"
 
   employeeProjectUrl:any ="http://localhost:3000/empProject"
+
+  loginUrl:any ="http://localhost:3000/loginMaster"
+
+  getLogin(){
+    return this.http.get(this.loginUrl)
+  }
   
   getEmployeeProject(){
     return this.http.get(this.employeeProjectUrl)
@@ -26,6 +32,11 @@ export class JsonServerService {
   postEmployees(employee:any){
     return this.http.post(this.employeeUrl,employee)
   }
+
+  postEmployeesProject(employee:any){
+    return this.http.post(this.employeeProjectUrl,employee)
+  }
+
 
   putEmployees(employee:any,id:any){
     return this.http.put(this.employeeUrl+"/"+id,employee)

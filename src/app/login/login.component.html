@@ -1,0 +1,33 @@
+
+
+<form [formGroup]="employeeLoginFormGroup" (ngSubmit)="loginUser()">
+
+    <label> UserId :</label>
+
+    <input type="text" formControlName="id"> <br>
+
+    <label> Password :</label>
+
+    <input type="text" formControlName="password"><br>
+
+
+    <button type="submit" class=" btn btn-primary">Login</button>
+
+</form>
+
+<div *ngIf="allowLogin.includes(true)">
+
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+
+            <button ngbNavLink routerLink="user">UserComponent</button>
+        </li>
+        <li ngbNavItem>
+
+            <button ngbNavLink routerLink="employee">EmployeeComponent</button>
+
+        </li>
+
+    </ul>
+
+</div>

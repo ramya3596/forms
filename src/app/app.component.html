@@ -1,8 +1,12 @@
 
-<div class="d-grid gap-2 " >
+<ul ngbNav #nav="ngbNav" class="nav-item">
+    <li ngbNavItem>
+        <button ngbNavLink routerLink="login">Login</button>
 
-<button class="btn btn-primary btn-lg" type="button"routerLink="user">UserComponent</button>
-<button class="btn btn-primary btn-lg" type="button" routerLink="employee">EmployeeComponent</button>
+    </li>
 
-</div>
+</ul>
+
+
 <router-outlet></router-outlet>
+
