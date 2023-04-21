@@ -14,7 +14,7 @@ export class EmployeeComponent {
 
   postView: boolean = false
 
-  employee: any
+  employee: any =[]
   employeeRes:any =[]
 
   employeeProject:any
@@ -38,11 +38,21 @@ export class EmployeeComponent {
   loadEmployee(val: any) {
 
     this.employeeServe.getEmployees().subscribe(res => {
-      this.employee = res
+      this.employeeRes = res
 
       this.employeeServe.getEmployeeProject().subscribe(res1 =>{console.log(res1)
         this.employeeProject=res1
         console.log(this.employeeProject)
+        this.employeeRes.forEach((ele:any)=>{
+          
+          this.employeeProject.forEach((ele1:any)=>{
+          if(ele.project == ele1.id){
+            ele.project=ele1.projectName
+          }
+          })
+          this.employee.push(ele)
+
+        })
         
       })
 
