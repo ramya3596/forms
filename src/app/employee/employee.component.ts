@@ -10,6 +10,11 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class EmployeeComponent implements OnInit {
   constructor(private employeeServe: JsonServerService) { }
   ngOnInit(): void {
+    this.loadEmployeeProject()
+  }
+  
+  loadEmployeeProject(){
+    this.employee=[]
     this.employeeServe.getEmployees().subscribe(res => {
       this.employeeRes = res
 
@@ -45,7 +50,6 @@ export class EmployeeComponent implements OnInit {
 
     })
   }
-
   getView: boolean = false
 
   postView: boolean = false
@@ -137,10 +141,9 @@ export class EmployeeComponent implements OnInit {
     console.log(JSON.stringify(this.employeeFormGroup.value))
 
     this.employeeProject = {
-      "projectName": this.employeeFormGroup.controls.project
+      "projectName": this.employeeFormGroup.controls.project.value
 
     }
-
 
     if (this.employeeFormGroup.controls.id.getRawValue() === "") {
       this.employeeServe.getEmployees().subscribe(res => {
@@ -169,9 +172,10 @@ export class EmployeeComponent implements OnInit {
         })
         if (this.allowToPost == true) {
 
-          // this.employeeServe.postEmployeesProject(this.employeeProject).subscribe(res1 => {
-          //   this.employeeProjectRes = res1
+          this.employeeServe.postEmployeesProject(this.employeeProject).subscribe(res1 => {
+            this.employeeProjectRes = res1
 
+            this.employeeFormGroup.controls.project.setValue(this.employeeProjectRes.id)
 
             this.employeeServe.postEmployees(this.employeeFormGroup.value).subscribe(res => {
 
@@ -179,7 +183,8 @@ export class EmployeeComponent implements OnInit {
 
               alert("employee saved succesfully")
 
-              this.employeeServe.getEmployees().subscribe(res => this.employee = res)
+              // this.employeeServe.getEmployees().subscribe(res => this.employee = res)
+              this.loadEmployeeProject()
 
               this.getView = true
               this.postView = false
@@ -198,7 +203,7 @@ export class EmployeeComponent implements OnInit {
 
 
             })
-          // })
+          })
         } else {
           alert("employeeId already exist")
         }
