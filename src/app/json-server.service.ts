@@ -28,6 +28,9 @@ export class JsonServerService {
   getEmployees(){
     return this.http.get(this.employeeUrl)
   }
+  getEmployee(id:any){
+    return this.http.get(this.employeeUrl, +"/" +id)
+  }
 
   postEmployees(employee:any){
     return this.http.post(this.employeeUrl,employee)
@@ -41,9 +44,17 @@ export class JsonServerService {
   putEmployees(employee:any,id:any){
     return this.http.put(this.employeeUrl+"/"+id,employee)
   }
+
+  putEmployeesProject(employee:any,id:any){
+    return this.http.put(this.employeeProjectUrl+"/"+id,employee)
+  }
   
   deleteEmployee(id:any){
     return this.http.delete(this.employeeUrl+"/"+id)
+  }
+
+  deleteEmployeeProject(id:any){
+    return this.http.delete(this.employeeProjectUrl+"/"+id)
   }
 
 
